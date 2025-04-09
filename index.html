@@ -4,13 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music App</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>Music App</h1>
+  <br>
+<hr>
+<br>
+  <div class="filter">
+    <label for="genreFilter">Genre</label>
+    <select id="genreFilter">
+      <option value="">All genres</option>
+    </select>
 
-  <div id="playlist-container"></div>
-
-  <script type="module" src="js/app.js"></script>
+    <label for="artistFilter" style="margin-left: 10px;">Artist</label>
+    <select id="artistFilter">
+      <option value="">All artists</option>
+    </select>
+  </div>
+  <br>
+<hr>
+<br>
+  <ul id="songList"></ul>
+  
+  <script type="module" src="app.js"></script>
 </body>
 </html>
