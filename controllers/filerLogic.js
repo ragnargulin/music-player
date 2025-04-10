@@ -1,4 +1,4 @@
-import { songs } from './songsData.js';
+import { songs } from '../models/songsData.js';
 
 const songList = document.getElementById('songList');
 const genreFilter = document.getElementById('genreFilter');
