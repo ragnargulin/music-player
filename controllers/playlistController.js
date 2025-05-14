@@ -1,8 +1,8 @@
-import { playlists, selectPlaylist, selectedPlaylistIndex } from '../models/playlistsData.js';
+import { playlists, selectPlaylist, selectedPlaylistIndex, addPlaylist } from '../models/playlistsData.js';
+import { renderPlaylists } from '../views/playlistView.js';
 
 const playlistForm = document.getElementById('playlist-form');
 const playlistInput = document.getElementById('playlist-name');
-const playlistList = document.getElementById('playlist-list');
 
 export function initPlaylistController() {
   playlistForm.addEventListener('submit', (e) => {
@@ -10,32 +10,15 @@ export function initPlaylistController() {
     const name = playlistInput.value.trim();
     if (!name) return;
 
-    const newPlaylist = { name, songs: [] };
-    playlists.push(newPlaylist);
+    addPlaylist(name);
     playlistInput.value = '';
-    renderPlaylists(); // Refresh playlist UI
+    renderPlaylists(playlists, selectedPlaylistIndex, handlePlaylistSelect);
   });
 
-  renderPlaylists(); 
+  renderPlaylists(playlists, selectedPlaylistIndex, handlePlaylistSelect);
 }
 
-export function renderPlaylists() {
-  playlistList.innerHTML = ''; 
-
-  playlists.forEach((playlist, index) => {
-    const li = document.createElement('li');
-    li.textContent = `${playlist.name} (${playlist.songs.length} songs)`;
-    li.style.cursor = 'pointer';
-
-    if (selectedPlaylistIndex === index) {
-      li.style.fontWeight = 'bold';
-    }
-
-    li.addEventListener('click', () => {
-      selectPlaylist(index);
-      renderPlaylists(); 
-    });
-
-    playlistList.appendChild(li);
-  });
+function handlePlaylistSelect(index) {
+  selectPlaylist(index);
+  renderPlaylists(playlists, selectedPlaylistIndex, handlePlaylistSelect);
 }

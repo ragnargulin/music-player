@@ -1,7 +1,7 @@
 import { songs } from '../models/songsData.js';
-import { playlists, selectedPlaylistIndex } from '../models/playlistsData.js';
-import { renderPlaylists } from './playlistController.js';
-
+import { playlists, selectedPlaylistIndex, addSongToSelected } from '../models/playlistsData.js';
+import { renderSongs } from '../views/songView.js';
+import { renderPlaylists } from '../views/playlistView.js';
 
 export function initFilters() {
   const songList = document.getElementById('songList');
@@ -25,33 +25,6 @@ export function initFilters() {
     artistFilter.appendChild(option);
   });
 
-  function renderSongs(songsToRender) {
-    songList.innerHTML = '';
-    songsToRender.forEach(song => {
-      const li = document.createElement('li');
-      li.textContent = `${song.title} – ${song.artist} [${song.genre}]`;
-
-      const addButton = document.createElement('button');
-      addButton.textContent = 'Add to Playlist';
-      addButton.style.marginLeft = '10px';
-
-      addButton.addEventListener('click', () => {
-        if (selectedPlaylistIndex === null) {
-          alert('Select a playlist first!');
-          return;
-        }
-
-        playlists[selectedPlaylistIndex].songs.push(song);
-        alert(`Added "${song.title}" to ${playlists[selectedPlaylistIndex].name}`);
-
-        renderPlaylists();
-      });
-
-      li.appendChild(addButton);
-      songList.appendChild(li);
-    });
-  }
-
   function filterSongs() {
     const genre = genreFilter.value;
     const artist = artistFilter.value;
@@ -62,11 +35,25 @@ export function initFilters() {
       return matchGenre && matchArtist;
     });
 
-    renderSongs(filtered);
+    renderSongs(filtered, handleAddSong);
+  }
+
+  function handleAddSong(song) {
+    if (selectedPlaylistIndex === null) {
+      alert('Select a playlist first!');
+      return;
+    }
+
+    addSongToSelected(song);
+    alert(`Added "${song.title}" to ${playlists[selectedPlaylistIndex].name}`);
+    renderPlaylists(playlists, selectedPlaylistIndex, index => {
+      selectPlaylist(index);
+      renderPlaylists(playlists, selectedPlaylistIndex, arguments.callee);
+    });
   }
 
   genreFilter.addEventListener('change', filterSongs);
   artistFilter.addEventListener('change', filterSongs);
 
-  renderSongs(songs);
+  renderSongs(songs, handleAddSong);
 }
