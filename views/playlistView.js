@@ -31,8 +31,6 @@ export function renderPlaylists(playlists, selectedIndex, expandedIndex, onSelec
         const removeBtn = document.createElement('button');
         removeBtn.textContent = '×';
         removeBtn.title = 'Remove from playlist';
-        removeBtn.style.marginLeft = '10px';
-        removeBtn.style.color = 'red';
   
         removeBtn.addEventListener('click', (e) => {
           e.stopPropagation();
