@@ -1,4 +1,4 @@
-export function renderSongs(songs, onAdd) {
+export function renderSongs(songs, onAdd, playlistSelected) {
     const songList = document.getElementById('songList');
     songList.innerHTML = '';
   
@@ -6,13 +6,13 @@ export function renderSongs(songs, onAdd) {
       const li = document.createElement('li');
       li.textContent = `${song.title} – ${song.artist} [${song.genre}]`;
   
-      const addButton = document.createElement('button');
-      addButton.textContent = 'Add to Playlist';
-      addButton.style.marginLeft = '10px';
+        const addButton = document.createElement('button');
+        addButton.textContent = 'Add to Playlist';
+        addButton.style.marginLeft = '10px';
   
-      addButton.addEventListener('click', () => onAdd(song));
+        addButton.addEventListener('click', () => onAdd(song));
+        li.appendChild(addButton);
   
-      li.appendChild(addButton);
       songList.appendChild(li);
     });
   }

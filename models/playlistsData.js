@@ -15,8 +15,15 @@ export function addSongToSelected(song) {
   if (selectedPlaylistIndex === null) return false;
   playlists[selectedPlaylistIndex].songs.push(song);
   savePlaylists();
+  
   return true;
 }
+
+export function removeSongFromPlaylist(playlistIndex, songIndex) {
+  playlists[playlistIndex].songs.splice(songIndex, 1);
+  savePlaylists();
+}
+
 
 function savePlaylists() {
   sessionStorage.setItem('playlists', JSON.stringify(playlists));

@@ -1,19 +1,50 @@
-export function renderPlaylists(playlists, selectedIndex, onSelect) {
+export function renderPlaylists(playlists, selectedIndex, expandedIndex, onSelect, onRemoveSong, onToggleExpand) {
     const playlistList = document.getElementById('playlist-list');
     playlistList.innerHTML = '';
   
     playlists.forEach((playlist, index) => {
-      const li = document.createElement('li');
-      li.textContent = `${playlist.name} (${playlist.songs.length} songs)`;
-      li.style.cursor = 'pointer';
+      const details = document.createElement('details');
+      if (index === expandedIndex) details.setAttribute('open', '');
   
-      if (index === selectedIndex) {
-        li.style.fontWeight = 'bold';
-      }
+      const summary = document.createElement('summary');
+      summary.textContent = `${playlist.name} (${playlist.songs.length} songs)`;
   
-      li.addEventListener('click', () => onSelect(index));
+      if (index === selectedIndex) summary.style.fontWeight = 'bold';
   
-      playlistList.appendChild(li);
+      summary.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        if (expandedIndex === index) {
+          onToggleExpand(null); 
+        } else {
+          onSelect(index);      
+          onToggleExpand(index); 
+        }
+      });
+  
+      details.appendChild(summary);
+  
+      const ul = document.createElement('ul');
+      playlist.songs.forEach((song, songIndex) => {
+        const li = document.createElement('li');
+        li.textContent = `${song.title} – ${song.artist}`;
+  
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = '×';
+        removeBtn.title = 'Remove from playlist';
+        removeBtn.style.marginLeft = '10px';
+        removeBtn.style.color = 'red';
+  
+        removeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          onRemoveSong(index, songIndex);
+        });
+  
+        li.appendChild(removeBtn);
+        ul.appendChild(li);
+      });
+  
+      details.appendChild(ul);
+      playlistList.appendChild(details);
     });
   }
   
