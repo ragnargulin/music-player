@@ -9,7 +9,6 @@ export function renderPlaylists(playlists, selectedIndex, expandedIndex, onSelec
       const summary = document.createElement('summary');
       summary.textContent = `${playlist.name} (${playlist.songs.length} songs)`;
   
-      if (index === selectedIndex) summary.style.fontWeight = 'bold';
   
       summary.addEventListener('click', (e) => {
         e.preventDefault(); 
