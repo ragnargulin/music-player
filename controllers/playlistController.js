@@ -41,11 +41,6 @@ function rerender() {
 }
 
 function handleAddSong(song) {
-  const success = addSongToSelected(song);
-  if (!success) {
-    alert('No playlist selected');
-    return;
-  }
   if (selectedPlaylistIndex === null) return;
 
   const playlist = playlists[selectedPlaylistIndex];
