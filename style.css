@@ -1,17 +1,174 @@
-body {
-    font-family: sans-serif;
-    padding: 20px;
-  }
+:root {
+  --primary-color: #2346c5;
+  --black: #282828;
+  --white: #F9F6EF;
+}
 
-  ::selection {
-    background: #ff9900;
-    color: #000;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-    li {
-        margin: 5px 0;
-    }
-  
+*{
+  cursor: url("cursor.svg") 16 16, auto;
+transition: background-color 0.4s ease;
+}
+/* Typography */
+body, html {
+  margin: 0;
+  padding: 10px;
+  font-family: sans-serif;
+  line-height: 1.5;
+  background: var(--white);
+  color: var(--black);
+  max-width:600px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  line-height: 1;
+margin:0
+}
+
+h1 {
+  font-size: 15vw;
+}
+
+h2 {
+  font-size: 10vw;
+}
+
+h3 {
+  font-size: 5vw;
+}
+p, blockquote, pre {
+  margin: 0 0 1em;
+}
+
+blockquote {
+  padding-left: 1em;
+  border-left: 3px solid #ccc;
+}
+
+pre, code, kbd, samp {
+  font-family: monospace;
+  background: #eee;
+  padding: 0.2em 0.4em;
+}
+
+abbr, address, b, strong, i, em, mark, small, sub, sup, u {
+background-color: var(--black);
+color: var(--white);
+}
+
+/* Links and Media */
+a {
+  color: var(--black);
+  text-decoration: underline;
+}
+
+img, video, audio, canvas, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Lists */
+ul, ol {
+  padding-left:0;
+
+}
+
+li {
+  margin-bottom: 0.5em;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+dl, dt, dd {
+  margin: 0;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+}
+
+th, td {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+}
+
+/* Forms and Inputs */
+form, fieldset, legend, label {
+  margin-bottom: 1em;
+}
+
+input, select, textarea, button {
+  font: inherit;
+  padding: 0.5em;
+  border: 2px solid #111;
+  background: white;
+}
+
+button {
+  color: var(--black);
+  background-color: var(--white);
+  border: 2px solid var(--black);
+  box-shadow: 4px 4px 0 var(--black);
+  transition: all 0.2s ease;
+  font-family: 'Roboto Mono', monospace;
+
+}
+
+button:hover {
+  background: var(--black);
+  color: var(--white);
+  box-shadow: 6px 6px 0 #000;
+
+}
+
+/* Sections and Grouping */
+div, section, article, aside, nav, header, footer, main {
+  margin-bottom: 2em;
+}
+
+hr {
+  border: 0;
+  border-top: 2px solid var(--black);
+  margin: 1em 0;
+}
+
+/* Semantic Inline */
+span, time, data, var, output, progress, meter {
+  /* placeholder for inline elements */
+}
+
+/* Interactive */
+details {
+  border: 2px solid var(--black);
+margin-bottom: 5px;
+}
+details[open] summary {
+  font-weight: bold;
+}
+
+details li {
+  padding:0 10px;
+}
+summary {
+  padding:10px
+}
+summary:hover {
+background-color: var(--black);
+color: var(--white)}
+
+dialog {
+  border: 2px solid #111;
+  padding: 1em;
+  background-color: pink;
+}
+
+/* Obsolete (optional) */
+center, font, strike, big, tt {
+  /* deprecated but you can still override */
+}

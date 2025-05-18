@@ -7,22 +7,28 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Music App</h1>
-  <br>
-<hr>
+  <h1>Listr♫</h1>
+
 <br>
-<h2>Create a Playlist</h2>
+<br>
+
+<section>
+<h3><mark>All playlists</mark></h3>
+<br>
+<ul id="playlist-list"></ul>
 <form id="playlist-form">
-  <input type="text" id="playlist-name" placeholder="Playlist name" required />
+  <input type="text" id="playlist-name" placeholder="Create a new playlist" required />
   <button type="submit">Create</button>
 </form>
-
-<ul id="playlist-list"></ul>
+</section>
 
 <br>
-<hr>
 <br>
 
+<section>
+<h3><mark>All songs</mark></h3>
+<br>
+<br>
   <div class="filter">
     <label for="genreFilter">Genre</label>
     <select id="genreFilter">
@@ -34,11 +40,10 @@
       <option value="">All artists</option>
     </select>
   </div>
-  <br>
-<hr>
-<br>
   <ul id="songList"></ul>
   
+</section>
+
   <script type="module" src="main.js"></script>
 </body>
 </html>
