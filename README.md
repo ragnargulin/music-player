@@ -16,32 +16,32 @@ Projektet är versionhanterat med Git och publicerat på GitHub. Följande grena
 
 **Skapa ny gren:**
 
-´´´
+```
     git checkout -b features/ny-funktion
-´´´
+```
 
 **Byta gren:**
 
-´´´
+```
     git checkout development
-´´´
+```
 
 **Slå ihop grenar:**
 
-´´´
+```
     git checkout development
     git merge features/ny-funktion
-´´´
+```
 
 **Lösa konflikter:**
 1. Git markerar konfliktområden i filerna med `<<<<<<<`, `=======`, `>>>>>>>`
 2. Gå igenom konflikterna, välj vilken kod som ska behållas eller kombinera delar
 3. När konflikterna är lösta:
 
-´´´
+```
        git add .
        git commit
-´´´
+```
 
 **Tips:** Testa alltid applikationen efter merge för att försäkra att allt fungerar.
 
